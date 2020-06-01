@@ -1,0 +1,87 @@
+<config>
+	<modules>
+		<Ccc_Process>
+			<version>1.0.2</version>
+		</Ccc_Process>
+	</modules>
+
+	<global>
+		
+		<helpers>
+			<process>
+				<class>Ccc_Process_Helper</class>
+			</process>
+		</helpers>
+
+		<blocks>
+			<process>
+				<class>Ccc_Process_Block</class>
+			</process>
+		</blocks>
+
+		<models>
+	        <process>
+	            <class>Ccc_Process_Model</class>
+	            <resourceModel>process_resource</resourceModel>
+	        </process>
+	         
+	        <process_resource>
+	            <class>Ccc_Process_Model_Resource</class>
+	            <entities>  
+	            	<process>
+                        <table>process</table>
+                    </process>              
+                    <process_group>
+                        <table>process_group</table>
+                    </process_group>  
+                    <process_data>
+                        <table>process_data</table>
+                    </process_data>                     
+	            </entities>
+	        </process_resource>
+		</models>
+
+		<resources>
+			<process_setup>
+				<setup>
+					<module>Ccc_Process</module>
+				</setup>
+			</process_setup>
+
+			<process_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</process_write>
+
+			<process_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</process_read>
+		</resources>
+		
+	</global>
+
+	<admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<ccc_process>Ccc_Process_Adminhtml</ccc_process>
+					</modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+
+	<adminhtml>
+		<layout>
+			<updates>
+				<process>
+					<file>process.xml</file>
+				</process>
+			</updates>
+		</layout>
+	</adminhtml>
+</config>

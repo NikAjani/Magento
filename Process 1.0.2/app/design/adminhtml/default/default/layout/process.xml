@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<adminhtml_process_group_index>
+		<reference name="content">
+		  <block type="process/adminhtml_process_group" name="process"/>
+		</reference>
+	</adminhtml_process_group_index>
+
+	<adminhtml_processes_index>
+		<reference name="content">
+		  <block type="process/adminhtml_process" name="process"/>
+		</reference>
+	</adminhtml_processes_index>
+</layout>
