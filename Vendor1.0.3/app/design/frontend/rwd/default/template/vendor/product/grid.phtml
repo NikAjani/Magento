@@ -1,0 +1,63 @@
+<?php
+    $_productCollection=$this->getLoadedProductCollection();
+    $_helper = $this->helper('catalog/output');
+    $_params = $this->escapeHtml(json_encode(array('form_key' => $this->getFormKey())));
+?>
+
+<div>
+
+    <div class="a-right">
+        <a class="button" href="<?php echo $this->getUrl("*/product/new"); ?>">Add Product</a>
+    </div>
+
+    <div style="margin-top: 25px">
+
+        <form action="<?php echo $this->getUrl('*/product/delete'); ?>" method="post">
+            <table width="100%" border="1">
+                <tr class="toolbar">
+                    <th><button type="submit">Delete</button></th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>SKU</th>
+                    <th>Qty</th>
+                    <th>Action</th>
+                </tr>
+                <?php if(!$_productCollection): ?>
+                    <tr>
+                        <th>No Product Avialable</th>
+                    </tr>
+                <?php else: ?>
+                <?php foreach ($_productCollection as $_product): ?>
+                    <tr>
+                        
+                        <td align="center">
+                            <input type="checkbox" name="productIds[]" value="<?php echo $_product->getId(); ?>">
+                        </td>
+
+                        <td>
+                            <?php echo $_helper->productAttribute($_product, $_product->getName() , 'name'); ?>
+                        </td?>
+
+                        <td>
+                            <?php echo $_helper->productAttribute($_product, $_product->getPrice() , 'price'); ?>
+                        </td?>
+
+                        <td>
+                            <?php echo $_helper->productAttribute($_product, $_product->getSku() , 'sku'); ?>
+                        </td?>
+
+                        <td><?php echo $this->getQty($_product); ?></td?>
+                        <td>
+                            <a href="<?php echo $this->getUrl('*/product/edit',array('id' => $_product->getId())) ?>"> Edit </a>
+
+                            <!-- <a href="<?php //echo $this->getUrl('*/product/delete',array('id' => $_product->getId())) ?>"> Delete </a> -->
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                <?php endif; ?>
+            </table>
+        </form>
+        
+    </div>
+    
+</div>

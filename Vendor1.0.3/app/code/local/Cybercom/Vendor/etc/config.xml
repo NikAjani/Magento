@@ -1,0 +1,102 @@
+<config>
+	<modules>
+		<Cybercom_Vendor>
+			<version>1.0.3</version>
+		</Cybercom_Vendor>
+	</modules>
+
+	<global>
+		<helpers>
+			<vendor>
+				<class>Cybercom_Vendor_Helper</class>
+			</vendor>
+		</helpers>
+
+		<blocks>
+			<vendor>
+				<class>Cybercom_Vendor_Block</class>
+			</vendor>
+			<adminhtml>
+				<rewrite>
+					<catalog_product_grid>Cybercom_Vendor_Block_Adminhtml_Catalog_Product_Grid</catalog_product_grid>
+				</rewrite>
+			</adminhtml>
+		</blocks>
+
+		<models>
+			<vendor>
+				<class>Cybercom_Vendor_Model</class>
+				<resourceModel>vendor_resource</resourceModel>
+			</vendor>
+
+			<vendor_resource>
+				<class>Cybercom_Vendor_Model_Resource</class>
+				<entities>
+					<vendor>
+						<table>vendor</table>
+					</vendor>
+				</entities>
+			</vendor_resource>
+		</models>
+		
+		<resources>
+			<vendor_setup>
+				<setup>
+					<module>Cybercom_Vendor</module>
+				</setup>
+			</vendor_setup>
+
+			<vendor_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</vendor_write>
+
+			<vendor_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</vendor_read>
+		</resources>
+	</global>
+
+	<frontend>
+        <routers>
+			<vendor>
+				<use>standard</use>
+				<args>
+					<module>Cybercom_Vendor</module>
+					<frontName>vendor</frontName>
+				</args>
+			</vendor>
+        </routers>
+        <layout>
+            <updates>
+                <vendor>
+                    <file>vendor.xml</file>
+                </vendor>
+            </updates>
+        </layout>
+    </frontend> 
+
+	<admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<cybercom_vendor before="Mage_Adminhtml">Cybercom_Vendor_Adminhtml</cybercom_vendor>
+					</modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+	<adminhtml>
+    	<layout>
+	      <updates>
+	        <vendor>
+	          <file>vendor.xml</file>
+	        </vendor>
+	      </updates>
+	  	</layout>
+  	</adminhtml>
+</config>

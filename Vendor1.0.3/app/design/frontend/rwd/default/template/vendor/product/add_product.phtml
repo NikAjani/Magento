@@ -1,0 +1,62 @@
+<?php $product = $this->getProduct(); ?>
+
+<div class="account-create">
+	<div class="page-title">
+		<h1>
+			<?php echo $this->getRequest()->getParam('id') ? 'Edit' : 'Add';?> Product</h1>
+	</div>
+	
+	<form method="post" action="<?php echo $this->getUrl('*/product/save',array('id' => $this->getRequest()->getParam('id'))) ?>">
+		<div class="fieldset">
+			<ul class="form-list">
+				<li>
+					<label for="product_name" class="required"><em>*</em><?php echo $this->__('Name') ?></label>
+                    <div class="input-box">
+                        <input type="text" name="product[name]" id="product_name" value="<?php echo $product->name; ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Name')) ?>" class="input-text validate-email required-entry" required />
+                    </div>
+				</li>
+				<li>
+					<label for="sku" class="required"><em>*</em><?php echo $this->__('SKU') ?></label>
+                    <div class="input-box">
+                        <input type="text" name="product[sku]" id="sku" value="<?php echo $product->sku; ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('SKU')) ?>" class="input-text required-entry" required />
+                    </div>
+				</li>
+				<li>
+					<label for="price" class="required"><em>*</em><?php echo $this->__('Price') ?></label>
+                    <div class="input-box">
+                        <input type="number" name="product[price]" id="price" value="<?php echo $product->price; ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Price')) ?>" class="input-text required-entry" required />
+                    </div>
+				</li>
+				<li>
+					<label for="quantity" class="required"><em>*</em><?php echo $this->__('Quantity') ?></label>
+                    <div class="input-box">
+                        <input type="number" name="product[stock_data][qty]" id="quantity" value="<?php echo $this->getQty($product); ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Quantity')) ?>" class="input-text required-entry" required />
+                    </div>
+				</li>
+				<li>
+					<label for="weight" class="required"><em>*</em><?php echo $this->__('Weight') ?></label>
+                    <div class="input-box">
+                        <input type="number" name="product[weight]" id="weight" value="<?php echo $product->weight; ?>"title="<?php echo Mage::helper('core')->quoteEscape($this->__('Weight')) ?>" class="input-text required-entry" required />
+                    </div>
+				</li>
+				<li>
+					<label for="short_description" class="required"><em>*</em><?php echo $this->__('Short Description') ?></label>
+                    <div class="input-box">
+                        <textarea name="product[short_description]" id="short_description" value="" rows="5" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Short Description')) ?>" class="input-text required-entry" required ><?php echo $product->short_description; ?></textarea>
+                    </div>
+				</li>
+				<li>
+					<label for="description" class="required"><em>*</em><?php echo $this->__('Description') ?></label>
+                    <div class="input-box">
+                        <textarea name="product[description]" id="description" value="" rows="5" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Description')) ?>" class="input-text required-entry" required ><?php echo $product->description; ?></textarea>
+                    </div>
+				</li>
+			</ul>
+		</div>
+		<div class="buttons-set">
+            <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+            <p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>" class="back-link"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
+            <button type="submit" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Submit')) ?>" class="button"><span><span><?php echo $this->__('Submit') ?></span></span></button>
+        </div>
+	</form>
+</div>

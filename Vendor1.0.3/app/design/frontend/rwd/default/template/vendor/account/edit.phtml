@@ -1,0 +1,72 @@
+<?php $vendor = $this->getVendor(); ?>
+
+<form action="<?php echo $this->getUrl('*/*/editPost') ?>" id="vendorForm" method="post" class="scaffold-form">
+    <div class="fieldset">
+        <h2 class="legend"><?php echo Mage::helper('vendor')->__('Vendor Information') ?></h2>
+        <ul class="form-list">
+            <li class="fields">
+                <div class="field">
+                    <label for="name" class="required"><em>*</em><?php echo Mage::helper('vendor')->__('Name') ?></label>
+                    <div class="input-box">
+                        <input name="vendor[name]" id="name" class="input-text required-entry" type="text" value="<?php echo $vendor->name; ?>" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="email" class="required"><em>*</em><?php echo Mage::helper('vendor')->__('Email') ?></label>
+                    <div class="input-box">
+                        <input name="vendor[email]" id="email" class="input-text required-entry validate-email" type="email" autocapitalize="off" autocorrect="off" spellcheck="false" value="<?php echo $vendor->email; ?>"/>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="currentPassword" class="required"><em>*</em><?php echo Mage::helper('vendor')->__('Current Password') ?></label>
+                    <div class="input-box">
+                        <input name="vendor[currentPassword]" id="currentPassword" class="input-text required-entry" type="password" autocapitalize="off" autocorrect="off" spellcheck="false" />
+                    </div>
+                </div>
+            </li>
+            <li class="control">
+                <input type="checkbox" name="change_password" id="change_password" value="1" onclick="setPasswordForm(this.checked)" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Change Password')) ?>"  class="checkbox" /><label for="change_password"><?php echo $this->__('Change Password') ?></label>
+            </li>
+        </ul>
+        <!-- <?php //if($this->getCustomer()->getChangePassword()==1): ?>
+        <?php // endif; ?> -->
+    </div>
+    <div class="fieldset" style="display:none;">
+        <h2 class="legend"><?php echo $this->__('Change Password') ?></h2>
+        <ul class="form-list">
+            <li class="fields">
+                <div class="field">
+                    <label for="password" class="required"><em>*</em><?php echo $this->__('New Password') ?></label>
+                    <div class="input-box">
+                        <input type="password" title="<?php echo Mage::helper('core')->quoteEscape($this->__('New Password')) ?>" class="input-text required-entry validate-password" name="password" id="password" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="confirmation" class="required"><em>*</em><?php echo $this->__('Confirm New Password') ?></label>
+                    <div class="input-box">
+                        <input type="password" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Confirm New Password')) ?>" class="input-text required-entry validate-cpassword" name="confirmation" id="confirmation" />
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="">
+        <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+        <button type="submit" class="button"><span><span><?php echo Mage::helper('vendor')->__('Update') ?></span></span></button>
+    </div>
+</form>
+
+<script type="text/javascript">
+//<![CDATA[
+
+    var vendorForm = new VarienForm('vendorForm', true);
+
+    function setPasswordForm(arg){
+        $('password').up('.fieldset')[arg ? 'show': 'hide']();
+    }
+
+    // <?php //if($this->getCustomer()->getChangePassword()): ?>
+    //    // setPasswordForm(true);
+    // <?php //endif; ?>
+//]]>
+</script>

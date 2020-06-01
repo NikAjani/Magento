@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0.0">
+    <default>
+        <reference name="top.links">
+            <action method="addLink" translate="label title" module="vendor"><label>Vendor Login</label><url helper="vendor/getVendorUrl"/><title>Vendor Login</title><prepare/><urlParams/><position>110</position></action>
+        </reference>
+    </default>
+
+    <vendor_account_create>
+
+        <reference name="root">   
+            <action method="setTemplate"><template>page/1column.phtml</template></action>   
+        </reference>   
+
+        <reference name="content">
+            <block type="vendor/form_create" name="vendor_create" template="vendor/form/create.phtml"></block>
+        </reference>
+
+    </vendor_account_create>
+
+    <vendor_account_login>
+
+        <reference name="root">   
+            <action method="setTemplate"><template>page/1column.phtml</template></action>   
+        </reference>   
+
+        <reference name="content">
+            <block type="vendor/form_login" name="vendor_login" template="vendor/form/login.phtml"></block>
+        </reference>
+
+    </vendor_account_login>
+
+    <vendor_account_index>
+
+        <update handle="vendor_account"/> 
+
+        <reference name="my.account.wrapper">
+            <block type="vendor/account_dashboard" name="vendor_dashboard" template="vendor/account/dashboard.phtml"></block>
+        </reference>
+
+    </vendor_account_index>
+
+     <vendor_account_edit>
+        <update handle="vendor_account"/> 
+        <reference name="my.account.wrapper">
+            <block type="vendor/account_edit" name="vendor_dashboard" template="vendor/account/edit.phtml"></block>
+        </reference>
+    </vendor_account_edit>
+
+    <vendor_product_grid>
+        <update handle="vendor_account"/>
+        <reference name="my.account.wrapper">
+            <block type="vendor/product_grid" name="vendor_dashboard" template="vendor/product/grid.phtml"></block>
+        </reference>
+    </vendor_product_grid>
+
+    <vendor_product_new>
+        <update handle="vendor_account"/>
+        <reference name="my.account.wrapper">
+            <block type="vendor/product_new" name="vendor_dashboard" template="vendor/product/add_product.phtml"></block>
+        </reference>
+    </vendor_product_new>
+
+    <vendor_product_edit>
+        <update handle="vendor_account"/>
+        <reference name="my.account.wrapper">
+            <block type="vendor/product_new" name="vendor_dashboard" template="vendor/product/add_product.phtml"></block>
+        </reference>
+    </vendor_product_edit>
+
+    <vendor_account translate="label">
+
+        <reference name="top.links">
+            <action method="removeLinkByUrl"><url helper="vendor/getVendorUrl" /></action>
+
+            <action method="addLink" translate="label title" module="vendor"><label>Logout Vendor</label><url helper="vendor/getVendorLogoutUrl"/><title>Logout Vendor</title><prepare/><urlParams/><position>110</position></action>
+        </reference>
+
+        <label>Vendor My Account (All Pages)</label>
+       
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+            <action method="addBodyClass"><class>vendor-account</class></action>
+        </reference>
+
+        <reference name="content">
+            <block type="page/html_wrapper" name="my.account.wrapper" translate="label">
+                <label>My Account Wrapper</label>
+                <action method="setElementClass"><value>my-account</value></action>
+            </block>
+        </reference>
+
+        <reference name="left">
+
+            <block type="vendor/navigation" name="vendor_navigation" before="-" template="vendor/navigation.phtml">
+                
+                <action method="addLink" translate="label" module="vendor"><name>account</name><path>vendor/account/</path><label>Account Dashboard</label></action>
+                
+                <action method="addLink" translate="label" module="vendor"><name>account_edit</name><path>vendor/account/edit/</path><label>Account Information</label></action>
+
+                <action method="addLink" translate="label" module="vendor"><name>product_info</name><path>vendor/product/grid</path><label>Vendor Products</label></action>
+            
+            </block>
+        </reference>
+    </vendor_account>
+
+
+</layout>
