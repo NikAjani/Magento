@@ -1,0 +1,52 @@
+<config>
+    <menu>
+        <attribute module="attribute">
+
+            <title>Category Attribute</title>
+            <sort_order>71</sort_order>
+            
+            <children>
+                <attribute module="attribute">
+                    <title>Manage attribute</title>
+                    <sort_order>100</sort_order>
+                    <action>*/attribute</action>
+                </attribute>
+
+                <attributeset module="attribute">
+                    <title>Manage attribute set</title>
+                    <sort_order>100</sort_order>
+                    <action>*/set</action>
+                </attributeset>
+
+            </children>
+        </attribute>
+
+    </menu>
+
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+
+            <admin>
+                <children>
+                    <attribute translate="title" module="attribute">
+                        <title>attribute</title>
+                    
+                        <children>
+                            <attribute translate="title">
+                                <title>Manage attribute</title>
+                            </attribute>
+
+                            <attributeset translate="title">
+                                <title>Manage attribute set</title>
+                            </attributeset>
+                            
+                        </children>
+                    </attribute>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

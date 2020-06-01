@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Ccc_Attribute>
+			<version>1.0.1</version>
+		</Ccc_Attribute>
+	</modules>
+
+	<global>
+		<helpers>
+			<attribute>
+				<class>Ccc_Attribute_Helper</class>
+			</attribute>
+		</helpers>
+		<blocks>
+			<attribute>
+				<class>Ccc_Attribute_Block</class>
+			</attribute>
+		</blocks>
+	</global>
+
+
+	<admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<Ccc_Attribute>Ccc_Attribute_Adminhtml</Ccc_Attribute>
+					</modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+
+	<adminhtml>
+	    <layout>
+	      <updates>
+	        <attribute>
+	          <file>attribute.xml</file>
+	        </attribute>
+	      </updates>
+	    </layout>
+  	</adminhtml>
+</config>
