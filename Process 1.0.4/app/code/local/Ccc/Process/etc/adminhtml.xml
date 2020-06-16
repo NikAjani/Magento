@@ -1,0 +1,93 @@
+<config>
+
+	<menu>
+		<process>
+			<title>Process</title>
+			<sort_order>71</sort_order>
+
+			<children>
+				<process>
+					<title>Manage Process</title>
+					<sort_order>100</sort_order>
+					<action>*/processes</action>
+				</process>
+
+				<group>
+					<title>Manage Process Group</title>
+					<sort_order>100</sort_order>
+					<action>*/process_group</action>
+				</group>
+			</children>
+		</process>
+	</menu>
+
+	<acl>
+		<resources>
+			<all>
+				<title>Allow Everything</title>
+			</all>
+
+			<admin>
+				<children>
+					<process translate="title">
+						<title>Process</title>
+						<sort_order>1000</sort_order>
+
+						<children>
+							<alert translate="title">
+								<title>Manage Process</title>
+							</alert>
+							<alert translate="title">
+								<title>Manage Process Group</title>
+							</alert>
+						</children>
+					</process>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+
+</config>
+<!-- 
+<config>
+  <menu>
+    <process module="process">
+      <title>Process</title>
+      <sort_order>100</sort_order>
+      <children>
+        <process module="process">
+          <title>Manage Process</title>
+          <sort_order>100</sort_order>
+          <action>*/process</action>
+        </process>
+        <process_group module="process">
+          <title>Manage Process Group</title>
+          <sort_order>100</sort_order>
+          <action>*/process_group</action>
+        </process_group>
+      </children>
+    </process>
+  </menu>
+  <acl>
+    <resources>
+      <all>
+        <title>Allow Everything</title>
+      </all>
+      <admin>
+        <children>
+          <process translate="title" module="process">
+            <title>process</title>
+            <children>
+              <process translate="title">
+                <title>Manage Process</title>
+              </process>
+              <process_group translate="title">
+                <title>Manage Process Group</title>
+              </process_group>
+            </children>
+          </process>
+        </children>
+      </admin>
+    </resources>
+  </acl>
+</config> -->

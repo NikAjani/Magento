@@ -1,0 +1,2 @@
+index,sku,type_id,name,price_type,status,visibility,bundle_options_data,bundle_selections_data,description,short_description,weight,tax_class_id,price
+1,Custom,bundle,Custome 1,0,1,4,"Storage#checkbox#1#1, Ram#select#1#1, Processsor#select#1#1","250 SSD,Ram 8 Gb,i3Processor#i5 processor",Custom 1,Custom 1,,,
