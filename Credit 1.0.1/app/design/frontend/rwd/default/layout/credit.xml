@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<layout>
+	<customer_account translate="label">
+		<reference name="customer_account_navigation">
+			<action method="addLink"><name>credit_store</name>
+			<path>credit/customer/view</path>
+			<label>Credit Store</label></action>
+		</reference>
+	</customer_account>
+
+	<credit_customer_view>
+	    <update handle="customer_account"/>
+	    <reference name="my.account.wrapper">
+	        <block type="credit/customer_credit" name="view.credit" template="credit/customer/view.phtml"/>
+	        
+	         <block type="customer/account_dashboard" name="customer.account.link.back" template="customer/account/link/back.phtml" /> 
+	    </reference>
+	</credit_customer_view>
+</layout>

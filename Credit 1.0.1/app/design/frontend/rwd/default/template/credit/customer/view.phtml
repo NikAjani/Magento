@@ -1,0 +1,22 @@
+<div class="dashboard">
+    <div class="page-title">
+        <h1><?php echo $this->__('Credit Store') ?></h1>
+    </div>
+
+    <div>
+    	<?php echo $this->getMessagesBlock()->toHtml() ?>
+    </div>
+    
+    <div>
+    	<strong>Credit Balance </strong> : <?php echo $this->getCreditBalance(); ?>
+    </div>
+
+    <div>
+    	<strong>Credit Limit </strong> : <?php echo $this->getCreditLimit(); ?>
+    </div>
+
+    <div>
+    	<strong>Credit Exchnage Ratio </strong> : <?php echo $this->getExchnageRatio(); ?>
+    </div>
+
+</div>
