@@ -1,0 +1,159 @@
+<config>
+
+	<modules>
+		<Ccc_Credit>
+			<version>1.0.2</version>
+		</Ccc_Credit>
+	</modules>
+
+	<global>
+
+		<helpers>
+            <credit>
+                <class>Ccc_Credit_Helper</class>
+            </credit>
+        </helpers>
+
+        <blocks>
+            <credit>
+                <class>Ccc_Credit_Block</class>
+            </credit>
+
+            <adminhtml>
+                <rewrite>
+                    <customer_grid>Ccc_Credit_Block_Adminhtml_Customer_Grid</customer_grid>
+                </rewrite>
+            </adminhtml>
+
+            <adminhtml>
+                <rewrite>
+                    <sales_order_grid>Ccc_Credit_Block_Adminhtml_Sales_Order_Grid</sales_order_grid>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+
+        <models>
+            <credit>
+                <class>Ccc_Credit_Model</class>
+                <resourceModel>credit_resource</resourceModel>
+            </credit>
+
+            <credit_resource>
+                <class>Ccc_Credit_Model_Resource</class>
+                <entities>  
+                    
+                    <credit_transaction>
+                        <table>credit_transaction</table>
+                    </credit_transaction>  
+                                       
+                </entities>
+            </credit_resource>
+
+        </models>
+
+        <events>
+            
+            <sales_order_place_after>
+                <observers>
+                    <ccc_credit_model_observer>
+                        <type>singleton</type>
+                        <class>Ccc_Credit_Model_Observer</class>
+                        <method>afterOrder</method>
+                    </ccc_credit_model_observer>
+                </observers>
+            </sales_order_place_after>
+
+            
+            <customer_save_after>
+                <observers>
+                    <ccc_credit_model_observer>
+                        <type>singleton</type>
+                        <class>Ccc_Credit_Model_Observer</class>
+                        <method>customerSaveAfter</method>
+                    </ccc_credit_model_observer>
+                </observers>
+            </customer_save_after>
+            
+        </events>
+
+		<resources>
+
+			 <credit_setup>
+				 <setup>
+				 	<module>Ccc_Credit</module>
+				 </setup>
+			 </credit_setup>
+
+	        <credit_write>
+	            <connection>
+	                <use>core_write</use>
+	            </connection>
+	        </credit_write>
+
+	        <credit_read>
+	            <connection>
+	                <use>core_read</use>
+	            </connection>
+	        </credit_read>
+
+		 </resources>
+
+    </global>
+
+    <default>
+        <payment>
+            <credit_payment>
+                <model>credit/standard</model>
+                <active>1</active>
+                <order_status>pending</order_status>
+                <title>Credit Payment</title>
+                <payment_action>sale</payment_action>
+                <sort_order>100</sort_order>
+            </credit_payment>
+        </payment>
+    </default>
+
+
+    <adminhtml>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <credit>
+                                            <title>My Module Configuration</title>
+                                        </credit>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+
+    <frontend>
+        
+        <layout>
+            <updates>
+                <credit>
+                    <file>credit.xml</file>
+                </credit>
+            </updates>
+        </layout>
+        
+        <routers>
+            <credit>
+                <use>standard</use>
+                <args>
+                    <module>Ccc_Credit</module>
+                    <frontName>credit</frontName>
+                </args>
+            </credit>
+        </routers>
+    </frontend> 
+</config>
