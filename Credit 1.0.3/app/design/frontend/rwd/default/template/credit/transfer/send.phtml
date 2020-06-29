@@ -1,0 +1,90 @@
+<div class="dashboard">
+
+    <div>
+        <?php echo $this->getMessagesBlock()->toHtml() ?>
+    </div>
+
+    <div class="page-title">
+        <h1><?php echo $this->__('Credit Balance Send'); ?></h1>
+    </div>
+	
+	<div>
+    	<form action="<?php echo $this->getUrl('*/*/upiSend') ?>" id="creditRequestForm" method="post" class="scaffold-form">
+
+		    <div class="fieldset">
+		        <h2 class="legend"><?php echo Mage::helper('credit')->__('Credit Balance Send Form') ?></h2>
+
+		        <ul class="form-list">
+		            <li class="fields">
+
+		                <div class="field">
+		                    <label for="email" class="required"><em>*</em><?php echo Mage::helper('credit')->__('Customer Email Id') ?></label>
+		                    <div class="input-box">
+		                        <input name="credit[email]" id="email" class="input-text required-entry validate-email" type="email" autocapitalize="off" autocorrect="off" spellcheck="false" />
+		                    </div>
+		                </div>
+
+		                <div class="field">
+		                    <label for="amount" class="required"><em>*</em><?php echo Mage::helper('credit')->__('Enter Amount') ?></label>
+		                    <div class="input-box">
+		                        <input name="credit[amount]" id="number" class="input-number required-entry validate-email" type="number" />
+		                    </div>
+		                </div>
+
+					    <div class="">
+					        <button type="submit" class="button"><span><span><?php echo Mage::helper('credit')->__('Send') ?></span></span></button>
+					    </div>
+
+		            </li>
+		        </ul>
+		    </div>
+
+		</form>
+    </div>
+
+    <br><hr><br>
+  
+    <div>
+        
+        <?php $_collection = $this->getRequestedData();?>
+
+        <table class="data-table orders">
+        	<caption style="text-align: center;margin-bottom: 20px"><strong>New Request From Customer</strong></caption>            <tr>
+                <th>Transfer Id #</th>
+                <th>To Customer</th>
+                <th>Transfer Amount</th>
+               	<th colspan="2" style="text-align: center">Action</th>
+            </tr>
+
+
+            <?php if (!$_collection->getData()): ?>
+
+            <tr style="text-align: center">
+                <td colspan="5">No Request Found</td>
+            </tr>
+
+            <?php else: ?>
+            <?php foreach ($_collection as $row): ?>
+
+            <tr>
+                <td><?php echo $row->getId(); ?></td>
+                <td><?php echo $this->getCustomerEmail($row->getToCustomerId()); ?></td>
+                <td><?php echo $row->getTransactionAmount(); ?></td>
+                <td>
+                	<a href="<?php echo $this->getUrl('*/*/approve', ['id' => $row->getId()]);?>">
+                		<strong>Approve</strong>
+                	</a>
+                </td>
+                <td>
+                	<a href="<?php echo $this->getUrl('*/*/reject', ['id' => $row->getId()]);?>">
+                		<strong>Reject</strong>
+                	</a>
+                </td>
+            </tr>
+
+            <?php endforeach;?>
+            <?php endif;?>
+        </table>
+
+    </div>
+</div>

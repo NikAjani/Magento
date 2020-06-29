@@ -1,0 +1,80 @@
+
+<div class="dashboard">
+
+    <div>
+        <?php echo $this->getMessagesBlock()->toHtml() ?>
+    </div>
+
+    <div class="page-title">
+        <h1><?php echo $this->__('Credit Store') ?></h1>
+    </div>
+
+    <hr><br>
+
+    <div>
+
+        <div>
+            <strong>Credit Balance </strong> : <?php echo $this->getCreditBalance(); ?>
+
+            <div style="float: right;">
+                <button type="button"  class="button button-red" onclick="window.location='<?php echo $this->getUrl('*/transfer/request') ?>';">Request For Balance</button>
+                <button type="button" class="button button-red" onclick="window.location='<?php echo $this->getUrl('*/transfer/send') ?>';">Send Balance <?php echo '<b>(' . $this->getRequestCount() . ')</b>'; ?></button>
+            </div>
+
+        </div>
+
+        <div>
+            <strong>Credit Limit </strong> : <?php echo $this->getCreditLimit(); ?>
+        </div>
+
+        <div>
+            <strong>Credit Exchnage Ratio </strong> : <?php echo $this->getExchnageRatio(); ?>
+        </div>
+
+    </div>
+
+
+
+    <br><hr><br>
+
+    <div>
+
+        <table class="data-table orders">
+            <tr>
+                <th>Transaction Id</th>
+                <th>Order Id</th>
+                <th>Balance Before</th>
+                <th>Balance Afer</th>
+                <th>Transaction Amount</th>
+                <th>Transaction Type</th>
+                <th>Detail</th>
+            </tr>
+
+            <?php $_collection = $this->getTransaction();?>
+
+            <?php if (!$_collection->getData()): ?>
+
+            <tr>
+                <td></td>
+            </tr>
+
+            <?php else: ?>
+            <?php foreach ($_collection as $row): ?>
+
+            <tr>
+                <td><?php echo $row->getId(); ?></td>
+                <td><?php echo $row->getOrderId(); ?></td>
+                <td><?php echo $row->getBalanceBeforeTransaction(); ?></td>
+                <td><?php echo $row->getBalanceAfterTransaction(); ?></td>
+                <td><?php echo $row->getCredit(); ?></td>
+                <td><?php echo $row->getTransType(); ?></td>
+                <td><?php echo $row->getDetail(); ?></td>
+            </tr>
+
+            <?php endforeach;?>
+            <?php endif;?>
+        </table>
+
+    </div>
+
+</div>

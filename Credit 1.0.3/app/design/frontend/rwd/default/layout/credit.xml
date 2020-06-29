@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<layout>
+	<customer_account translate="label">
+		<reference name="customer_account_navigation">
+			<action method="addLink"><name>credit_store</name>
+			<path>credit/customer/view</path>
+			<label>Credit Store</label></action>
+		</reference>
+	</customer_account>
+
+	<credit_customer_view>
+	    <update handle="customer_account"/>
+	    <reference name="my.account.wrapper">
+	        <block type="credit/customer_view" name="view.credit" template="credit/customer/view.phtml"/>
+	        
+	         <block type="customer/account_dashboard" name="customer.account.link.back" template="customer/account/link/back.phtml" /> 
+	    </reference>
+	</credit_customer_view>
+
+	<credit_transfer_request>
+	    <update handle="customer_account"/>
+	    <reference name="my.account.wrapper">
+	        <block type="credit/transfer_request" name="transfer_request.credit" template="credit/transfer/request.phtml"/>
+	        
+	         <block type="customer/account_dashboard" name="customer.account.link.back" template="customer/account/link/back.phtml" /> 
+	    </reference>
+	</credit_transfer_request>
+
+	<credit_transfer_send>
+	    <update handle="customer_account"/>
+	    <reference name="my.account.wrapper">
+	        <block type="credit/transfer_send" name="transfer_send.credit" template="credit/transfer/send.phtml"/>
+	        
+	         <block type="customer/account_dashboard" name="customer.account.link.back" template="customer/account/link/back.phtml" /> 
+	    </reference>
+	</credit_transfer_send>
+
+</layout>
